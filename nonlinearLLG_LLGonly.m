@@ -99,8 +99,8 @@ for Tstepp = 1 : Tstep_end
     
     %Get Relaxation
     Mxy = sqrt(Mx .* Mx + My .* My);
-    T1 = -Tstepp * log((Ms-Mz)/(Ms-Mzi));
-    T2 = -Tstepp * log(Mxy/Mxyi);
+    T1 = -Tstepp / log((Ms-Mz)/(Ms-Mzi));
+    T2 = -Tstepp / log(Mxy/Mxyi);
     
     if rem(Tstep, Tstep_int) == 0
         NN = floor(Tstep/Tstep_int);

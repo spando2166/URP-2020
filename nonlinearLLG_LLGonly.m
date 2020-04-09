@@ -41,17 +41,21 @@ Time_axis = 0:Tstep_int:Tstep_end;
 % Initialize field components;
 
 %demagnetization terms
-Nx=0;
-Ny=1;
-Nz=0;
-
 Mx = Ms;
 My = 0;
 Mz = 0;
 
+Mxi = Mx;
+Myi = My;
+Mzi = Mz;
+Mxyi = ((Mx*Mx)+(My*My))^(0.5);
+
 Hx = -Nx*Mx;
 Hy = -Ny*My;
 Hz = H0-Nz*Mz;
+
+T1 = 0;
+T2 = 0;
 
 % Initialize field matrices
 Hx_obs = zeros(1,Tstep_record);
@@ -91,6 +95,11 @@ for Tstepp = 1 : Tstep_end
     Mx = Mx ./ mag * Ms;
     My = My ./ mag * Ms;
     Mz = Mz ./ mag * Ms;
+    
+    %Get Relaxation
+    Mxy = ((Mx*Mx)+(My*My))^(0.5);
+    T1 = -Tstepp * log((Ms-Mz)/(Ms-Mzi));
+    T2 = -Tstepp * log(Mxy/Mxyi);
     
     if rem(Tstep, Tstep_int) == 0
         NN = floor(Tstep/Tstep_int);

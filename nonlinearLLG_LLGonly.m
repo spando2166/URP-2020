@@ -114,8 +114,6 @@ xlabel('Time [s]');
 ylabel('4\piM [Gauss]');
 % title( ['Magnetization magnitude, \alpha = ', num2str(alpha), ', X-direction RF Amplitude = Ho*' num2str(Hrf)]);
 
-%%below code can generate animated 3-d plots of magnetization
-%{
 %% gif
 h = figure;
 filename = 'testAnimated.gif';
@@ -126,7 +124,7 @@ ylabel('My');
 zlabel('Mz, bias direction');
 view(24,24);
 
-for t3D = Tstep_end*4/5:4:Tstep_end*4/5+2000
+for t3D = 1:5:length(Mx_obs)
     addpoints(SpinCurve,Mx_obs(t3D)/(1e3/4/pi),My_obs(t3D)/(1e3/4/pi),Mz_obs(t3D)/(1e3/4/pi));
     drawnow;
     %         pause(0.02)
@@ -144,7 +142,7 @@ for t3D = Tstep_end*4/5:4:Tstep_end*4/5+2000
     end
     
 end
-%}
+
 %{
 %% plot only
 h = figure;
@@ -152,7 +150,7 @@ SpinCurve = animatedline('LineWidth',1);
 % set(gca,'XLim',[-1000 1000],'YLim',[1450 1760],'ZLim',[-250 250])
 view(40,24);
 
-for t3D = 1:5:2000
+for t3D = 1:5:length(Mx_obs)
     addpoints(SpinCurve,Mx_obs(t3D)/(1e3/4/pi),My_obs(t3D)/(1e3/4/pi),Mz_obs(t3D)/(1e3/4/pi));
     drawnow;
 end
@@ -169,7 +167,7 @@ SpinCurve = animatedline('LineWidth',2);
 % set(gca,'XLim',[-1000 1000],'YLim',[1450 1760],'ZLim',[-250 250])
 view(13,24);
 
-for t3D = 1:1:1000
+for t3D = 1:5:length(Mx_obs)
     addpoints(SpinCurve,Mx_obs(t3D)/(1e3/4/pi),My_obs(t3D)/(1e3/4/pi),Mz_obs(t3D)/(1e3/4/pi));
     drawnow;
     frame = getframe(gcf);

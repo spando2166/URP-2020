@@ -64,6 +64,7 @@ Hz_obs = zeros(1,Tstep_record);
 Mx_obs = zeros(1,Tstep_record);
 My_obs = zeros(1,Tstep_record);
 Mz_obs = zeros(1,Tstep_record);
+Mxy_obs = zeros(1,Tstep_record);
 
 Prefactor1 = -gamma*DT;
 Prefactor2 = Prefactor1*alpha/Ms;
@@ -97,7 +98,7 @@ for Tstepp = 1 : Tstep_end
     Mz = Mz ./ mag * Ms;
     
     %Get Relaxation
-    Mxy = ((Mx*Mx)+(My*My))^(0.5);
+    Mxy = sqrt(Mx .* Mx + My .* My);
     T1 = -Tstepp * log((Ms-Mz)/(Ms-Mzi));
     T2 = -Tstepp * log(Mxy/Mxyi);
     
@@ -106,6 +107,7 @@ for Tstepp = 1 : Tstep_end
         Mx_obs(NN+1) = Mx;
         My_obs(NN+1) = My;
         Mz_obs(NN+1) = Mz;
+        Mxy_obs(NN+1) = Mxy;
     end
 end
 
@@ -113,6 +115,10 @@ figure
 plot(Time_axis(1:length(Mx_obs))*DT, Mx_obs/(1e3/4/pi), 'k', 'Linewidth', 2)
 hold on
 plot(Time_axis(1:length(My_obs))*DT, My_obs/(1e3/4/pi), ':r', 'Linewidth', 4)
+
+figure
+% xyaxis right
+plot(Time_axis(1:length(Mxy_obs))*DT, Mxy_obs/(1e3/4/pi), '-.b', 'Linewidth', 2)
 
 figure
 % yyaxis right

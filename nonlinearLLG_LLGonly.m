@@ -120,9 +120,15 @@ title('Mx and My over Time: Standard')
 xlabel('Time [s]');
 ylabel('4\piM [Gauss]');
 
-%figure
+%{
+figure
 % xyaxis right
-%plot(Time_axis(1:length(Mxy_obs))*DT, Mxy_obs/(1e3/4/pi), '-.b', 'Linewidth', 2)
+plot(Time_axis(1:length(Mxy_obs))*DT, Mxy_obs/(1e3/4/pi), '-.b', 'Linewidth', 2)
+legend ('Mxy')
+title('Mxy over Time: Standard')
+xlabel('Time [s]');
+ylabel('4\piM [Gauss]');
+%}
 
 figure
 % yyaxis right

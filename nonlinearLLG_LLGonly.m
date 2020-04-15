@@ -124,7 +124,7 @@ figure
 % yyaxis right
 plot(Time_axis(1:length(Mz_obs))*DT, Mz_obs/(1e3/4/pi), '-.b', 'Linewidth', 2)
 
-legend ('Mx','My','Mz (bias direction)')
+legend ('Mz (bias direction)')
 xlabel('Time [s]');
 ylabel('4\piM [Gauss]');
 % title( ['Magnetization magnitude, \alpha = ', num2str(alpha), ', X-direction RF Amplitude = Ho*' num2str(Hrf)]);

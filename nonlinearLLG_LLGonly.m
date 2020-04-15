@@ -115,6 +115,7 @@ figure
 plot(Time_axis(1:length(Mx_obs))*DT, Mx_obs/(1e3/4/pi), 'k', 'Linewidth', 2)
 hold on
 plot(Time_axis(1:length(My_obs))*DT, My_obs/(1e3/4/pi), ':r', 'Linewidth', 4)
+title('Mx and My over Time: Standard')
 
 figure
 % xyaxis right
@@ -123,6 +124,7 @@ plot(Time_axis(1:length(Mxy_obs))*DT, Mxy_obs/(1e3/4/pi), '-.b', 'Linewidth', 2)
 figure
 % yyaxis right
 plot(Time_axis(1:length(Mz_obs))*DT, Mz_obs/(1e3/4/pi), '-.b', 'Linewidth', 2)
+title('Mz over Time: Standard')
 
 legend ('Mz (bias direction)')
 xlabel('Time [s]');
